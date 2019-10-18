@@ -1,0 +1,23 @@
+int x = 0;
+global Semaphore mutex = new Semaphore (1);
+
+thread P: {
+	for (int i = 0; i < 10; i++) {
+		mutex.acquire();
+		x = x + 1;
+		mutex.release();
+	}
+}
+
+thread Q: {
+	for (int i = 0; i < 10; i++) {
+		mutex.acquire();
+		x = x + 1;
+		mutex.release();
+	}
+}
+
+// Assume R runs after P and Q are done
+thread R: {
+	print (x);	
+}

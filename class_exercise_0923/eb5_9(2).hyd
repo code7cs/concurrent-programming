@@ -1,0 +1,40 @@
+Semaphore permToLoad = new Semaphore(0);
+Semaphore doneLoading = new Semaphore(0);
+
+Semaphore track[] = {new Semaphore(1); new Semaphore(1)};
+
+Semaphore mutex = new Semaphore(1);
+
+thread PassengerTrain(i) {
+	track[i].acquire();
+	// use train
+	track[i].release();
+}
+
+thread FreightTrain(i) {
+
+	mutex.acquire();
+	track[i].acquire();
+	track[1-i].acquire();
+	mutex.release();
+
+	permToLoad.release();
+	// wait for machine to complete its task
+	doneLoading.acquire();
+
+	track[i].release();
+	track[1-i].release();
+}
+
+thread LoadingMachine {
+	while(true) {
+		perToLoad.acquire();
+		// process vehicle
+		doneLoading.release();
+	}
+}
+
+
+
+
+

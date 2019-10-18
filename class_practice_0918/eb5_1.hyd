@@ -1,0 +1,16 @@
+Semaphore mutex = new Semaphore (1);
+
+Semaphore ticket = new Semaphore (0);
+
+thread Men: {
+	mutex.acquire ();
+	ticket.acquire ();
+	ticket.acquire ();
+	mutex.release ();
+	// enter
+}
+
+thread woman {
+	ticket.release ();
+	// enter
+}

@@ -1,0 +1,44 @@
+int men, women = 0;
+Semaphore mutexM = new Semaphore(1);
+Semaphore mutexW = new Semaphore(1);
+Semaphore mutex = new Semaphore(1);
+
+thread Man: {
+	mutex.acquire();
+	mutexM.acquire();
+	men++;
+	if (men == 1) {
+		mutexW.acquire();
+	}
+	mutexM.release();
+	mutex.release();
+	
+	// use restroom
+
+	mutexM.acquire();
+	men--;
+	if (men == 0) {
+		mutexW.release();
+	}
+	mutexM.release();
+}
+
+thread Woman: {
+	mutex.acquire();
+	mutexW.acquire();
+	women++;
+	if (women == 1) {
+		mutexM.acquire();
+	}
+	mutexW.release();
+	mutex.release();
+
+	// use restroom
+
+	mutexW.acquire();
+	women--;
+	if (women == 0) {
+		mutexM.release();
+	}
+	mutexW.release();
+}
