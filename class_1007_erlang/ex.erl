@@ -50,18 +50,3 @@ mem(_X, []) -> false;
 mem(X, [H | T]) -> (X == H) or mem(X, T).
 
 %% sublist(L1,L2)
-
-
-
-
-% -record(person, {name, age}).
-
-% aPerson() -> #person{name = "Tom", age = 23}.
-
-% {empty}
-% {node, Data, LeftTree, RightTree}
-
-% mkLeaf ( N ) -> { node , N { empty } , { empty } } .
-
-% aTree() ->
-%     {node, 7, mkLeaf(2), {node, 9, mkLeaf(8), {empty}}}.
