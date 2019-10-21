@@ -70,6 +70,8 @@ mapT2(F,T) ->
     %       {node,"\t\t",{node,"\b\b",{empty},{empty}},{empty}}}
 
 
+% Type speciﬁcations:
+% -spec Function(ArgType1, ..., ArgTypeN)->ReturnType.
 -spec f(number()) -> number().
 % -spec f(number()) -> list().
 
@@ -90,6 +92,8 @@ f(N) ->
 % 4> is_map(#{1 => a, 2 => b}).
 % true
 
+
+%%% class 3 —— 1018
 -record(inh, {name, children}).
 
 theRegistry() ->
