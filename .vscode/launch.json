@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Solution",
+            "request": "launch",
+            "mainClass": "leetcode.Solution",
+            "projectName": "concurrent-programming_d6bf27bb"
+        }
+    ]
+}

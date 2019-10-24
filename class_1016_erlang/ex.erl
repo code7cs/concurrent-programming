@@ -105,13 +105,13 @@ theRegistry() ->
     M5 = maps:put(5, #inh{name="Robert", children=[]}, M4),
     maps:put(6, #inh{name="Susan", children=[]}, M5).
 
-nameOf(Id, TownR) ->
-    impelment.
-nameOfChildrenOf(Id, TownR) ->
-    impelment.
+% nameOf(Id, TownR) ->
+%     impelment.
+% nameOfChildrenOf(Id, TownR) ->
+%     impelment.
 
-descendantsOf(Id, TownR) ->
-    impelment.
+% descendantsOf(Id, TownR) ->
+%     impelment.
 
-ancestorsOf(Id, TownR) ->
-    impelment.
+% ancestorsOf(Id, TownR) ->
+%     impelment.
