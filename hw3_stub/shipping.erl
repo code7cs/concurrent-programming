@@ -47,7 +47,7 @@ load_ship(Shipping_State, Ship_ID, Container_IDs) ->                            
                     SS#shipping_state{ship_inventory=M1, port_inventory=M2};        % updating records
                 false -> list_to_atom("error")
             end;
-        error -> error  % todo "containers are not at the same port as ship"
+        _error -> io:format("~s~n~s~n", ["The given conatiners are not all on the same ship...", list_to_atom("error")])
     end.
 
 unload_ship_all(Shipping_State, Ship_ID) ->                 % 2
