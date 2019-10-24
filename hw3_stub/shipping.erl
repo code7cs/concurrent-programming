@@ -3,16 +3,16 @@
 -include_lib("./shipping.hrl").
 
 get_ship(Shipping_State, Ship_ID) ->
-    Ship = lists:keyfind(Ship_ID, 2, Shipping_State#shipping_state.ships),
-    io:format('#ship{id = ~w,name = "~s",container_cap = ~w}~n', [Ship#ship.id, Ship#ship.name, Ship#ship.container_cap]).
+    lists:keyfind(Ship_ID, 2, Shipping_State#shipping_state.ships).
+    % io:format('#ship{id = ~w,name = "~s",container_cap = ~w}~n', [Ship#ship.id, Ship#ship.name, Ship#ship.container_cap]).
 
 get_container(Shipping_State, Container_ID) ->
-    Container = lists:keyfind(Container_ID, 2, Shipping_State#shipping_state.containers),
-    io:format('#container{id = ~w,weight = ~w}~n', [Container#container.id, Container#container.weight]).
+    lists:keyfind(Container_ID, 2, Shipping_State#shipping_state.containers).
+    % io:format('#container{id = ~w,weight = ~w}~n', [Container#container.id, Container#container.weight]).
 
 get_port(Shipping_State, Port_ID) ->
-    Port = lists:keyfind(Port_ID, 2, Shipping_State#shipping_state.ports),
-    io:format('#port{id = ~w,name = "~s",~n docks = ~w,~n container_cap = ~w}~n',[Port#port.id, Port#port.name, Port#port.docks, Port#port.container_cap]).
+    lists:keyfind(Port_ID, 2, Shipping_State#shipping_state.ports).
+    % io:format('#port{id = ~w,name = "~s",~n docks = ~w,~n container_cap = ~w}~n',[Port#port.id, Port#port.name, Port#port.docks, Port#port.container_cap]).
 
 get_occupied_docks(Shipping_State, Port_ID) ->
     [element(2, N) || N <- Shipping_State#shipping_state.ship_locations, element(1, N) == Port_ID].
