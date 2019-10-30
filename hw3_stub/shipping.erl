@@ -3,7 +3,7 @@
 -include_lib("./shipping.hrl").
 
 get_ship(Shipping_State, Ship_ID) ->
-    lists:keyfind(Ship_ID, 2, Shipping_State#shipping_state.ships).
+    lists:keyfind(Ship_ID, #ship.id, Shipping_State#shipping_state.ships).
     % io:format('#ship{id = ~w,name = "~s",container_cap = ~w}~n', [Ship#ship.id, Ship#ship.name, Ship#ship.container_cap]).
 
 get_container(Shipping_State, Container_ID) ->

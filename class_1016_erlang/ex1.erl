@@ -57,6 +57,21 @@ sumT({node, D, LT, RT}) -> D + sumT(LT) + sumT(RT).
 % > ex1:sumT(ex1:aTree()).
 % 26
 
+% is_valid({empty}) -> false;
+% is_valid({node, _D, empty, empty}) -> true;
+% is_valid({node, _D, LT, RT}) ->
+%     is_valid(LT) or is_valid(RT).
+
+
+% has_cycle({empty}) -> false;
+% has_cycle({node, D, LT, RT}) ->
+%     RN = element(2, RT),
+%     case ((element(2, LT) == D) or (element(2, RT) == D)) of
+%         true ->
+%             true;
+%         _false ->
+%             has_cycle(LT) or has_cycle(RT)
+%     end.
 
 %%%% Copy from here onwards
 
