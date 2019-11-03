@@ -5,7 +5,9 @@
 
 echo() ->
     receive
-      {From, Msg} -> From ! {Msg}, echo();
+      {From, Msg} -> 
+          From ! {Msg}, 
+          echo();
       stop -> true
     end.
 
@@ -16,10 +18,11 @@ start() ->
     Token = " Hello Server!", % Sending tokens to the server
     Pid ! {self(), Token},      % 这里是第8行的情况
     io:format(" Sent ~s~n", [Token]),
-    receive {Msg} ->
+    receive 
+        {Msg} ->
         io:format(" Received ~s~n", [Msg])
     end,
-    Pid ! stop. % Stop server   % 这里是第9行的情况
+    Pid ! stop. % Stop server   % 这里是第11行的情况
 
 % 2> c(echo).
 % {ok,echo}
@@ -33,7 +36,7 @@ start() ->
 % 7> X = spawn(fun echo:echo/0).
 % <0.75.0>
 % 8> X!{self(), "hello"}.
-% {<0.58.0>,"hello"}
+% {<0.58.0>,"hello"}        % <0.58.0>是传信息给X的process，即 <0.58.0>把“hello”传给<0.75.0>
 % 9> X.
 % <0.75.0>
 % 10> 
