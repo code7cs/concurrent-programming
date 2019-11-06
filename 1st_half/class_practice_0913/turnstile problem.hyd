@@ -1,0 +1,15 @@
+global int counter = 0;
+global Semaphore mutex = new Semaphore(1);
+
+turnstile () {
+	repeat (50) {
+		mutex.acquire ();
+		counter ++;
+		mutex.release ();
+		print(counter);
+	}
+}
+
+repeat (2)
+	thread turnstile ();
+
