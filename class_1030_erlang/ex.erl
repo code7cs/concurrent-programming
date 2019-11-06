@@ -85,10 +85,41 @@ start() ->
     spawn(?MODULE,client2,[S]),
     spawn(?MODULE,client1,[S]).
 
+%% Turnstile example using message passing
 
+counter_loop(S) ->
+	receive
+		{bump} ->
+			counter_loop(S+1);
+		{read, From, Ref} ->
+			From!{self(), Ref, S},
+			counter_loop(S);
+		{stop} ->
+			ok
+	end.
 
+turnstile(0, _C) ->
+	ok;
+turnstile(N, C) when N>0->
+	C!{bump},
+	turnstile(N-1, C).
 
+startT(N) ->
+	C = spawn(?MODULE, counter_loop, [0]),
+	spawn(?MODULE, turnstile, [N,C]),
+	spawn(?MODULE, turnstile, [N,C]),
+	C.
 
+% How to test your code in the Erlang shell
+% 1> c(ex).
+% {ok,ex}
+% 2> C = ex:startT(50).
+% <0.64.0>
+% 3> C!{read, self(), make_ref()}.
+% {read,<0.56.0>,#Ref<0.0.4.209>}
+% 4> flush().
+% Shell got {<0.64.0>,#Ref<0.0.4.209>,100}
+% ok
 
-
+% flush() -> ok     ======>   Flushes any messages sent to the shell.
  
