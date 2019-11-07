@@ -42,6 +42,6 @@ servlet(Cl, Number) ->
     end.
 
 
-    % > [ spawn(gg,gg:client(S), []) || _ <- lists:seq(1,100) ].
+% > [ spawn(gg,gg:client(S), []) || _ <- lists:seq(1,100) ].
 
 
