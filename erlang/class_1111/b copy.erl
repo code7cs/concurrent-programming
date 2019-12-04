@@ -39,12 +39,12 @@ start() ->
 
 buffer(Size,StartedConsumers,StartedProducers,Capacity) ->
     receive
-	{From,startProduce} when Size+StartedProducers<Capacity ->
+	{From,startProduce} when Size+StartedProducers < Capacity ->
 	    From!{self(),ok},
 	    buffer(Size,StartedConsumers,StartedProducers+1,Capacity);
 	{_From,stopProduce} ->
 	    buffer(Size+1,StartedConsumers,StartedProducers-1,Capacity);
-	{From,startConsume} when Size-StartedConsumers >0 ->
+	{From,startConsume} when Size-StartedConsumers > 0 ->
 	    From!{self(),ok},
 	    buffer(Size,StartedConsumers+1,StartedProducers,Capacity);
 	{_From,stopConsume} ->

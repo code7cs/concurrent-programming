@@ -165,12 +165,8 @@ descendantsOf(Id, TownR) ->
 
 descendantsOf(_TownR, Visited, []) -> Visited;
 descendantsOf(TownR, Visited, Current) ->
-    DD = lists:flatten(lists:map(fun (Id) ->
-					 childrenOf(Id, TownR)
-				 end,
-				 Current)),
-    descendantsOf(TownR, Visited ++ Current,
-		  DD).    % New_Current = lists:filter(fun(Id) -> not(lists:member(Id, Visited)) end, DD),
+    DD = lists:flatten(lists:map(fun (Id) -> childrenOf(Id, TownR) end, Current)),
+    descendantsOf(TownR, Visited ++ Current, DD).    % New_Current = lists:filter(fun(Id) -> not(lists:member(Id, Visited)) end, DD),
 			  % the above line would be required for a standard BFS traversal, but is not necessary for this example
 			  % descendantsOf(TownR, Visited++Current, New_Current).
 
